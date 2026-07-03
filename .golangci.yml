@@ -11,7 +11,6 @@ linters-settings:
 linters:
   disable-all: true
   enable:
-    - goimports
     - unused
     - errcheck
     - gocognit
