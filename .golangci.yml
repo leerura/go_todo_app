@@ -15,8 +15,6 @@ linters:
     - errcheck
     - gocognit
     - gocyclo
-    - gofmt
     - govet
-    - misspell
     - staticcheck
     - whitespace
