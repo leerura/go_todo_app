@@ -1,0 +1,26 @@
+name: golang-ci
+
+on:
+  pull_request:
+    paths:
+      - "**.go"
+      - ".github/workflows/golangci.yml"
+
+# ⭕ [최종 해결책] 깃허브 액션 봇에게 댓글 작성 권한을 강제로 주입!
+permissions:
+  contents: read # 소스코드는 읽기만 해라
+  pull-requests: write # ★ 핵심: PR에 댓글 쓸 수 있는 권한을 허용한다!
+
+jobs:
+  golangci-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code into the module directory
+        uses: actions/checkout@v3
+      - name: golangci-lint
+        uses: reviewdog/action-golangci-lint@v2
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          golangci_lint_flags: "--config=./.golangci.yml ./..."
+          fail_on_error: true
+          reporter: "github-pr-review"
