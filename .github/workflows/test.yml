@@ -23,7 +23,7 @@ jobs:
           --health-timeout 10s
           --health-retries 10
         ports:
-          - 33306:3306
+          - 3306:3306
         env:
           MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
           MYSQL_DATABASE: todo
